@@ -8,6 +8,7 @@
 #define MAINWIDGET_H
 
 #include <QWidget>
+#include <QTimeEdit>
 #include <iostream>
 
 class QLineEdit;
@@ -26,6 +27,7 @@ public:
    */
   MainWidget(QWidget * parent = nullptr);
 
+
 public slots:
 
   /**
@@ -43,8 +45,13 @@ public slots:
    */
   void onColorChanged(int r, int g, int b);
 
+  virtual void mouseMoveEvent(QMouseEvent * e)override;
+  void updateTimer();
+
 private:
   QLineEdit * _colorValueDisplay; /**< A text field */
+  QLineEdit * _mouseValueDisplay; /**< A text field */
+  QTimeEdit *_displayHours;
 };
 
 #endif

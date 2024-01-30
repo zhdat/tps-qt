@@ -6,7 +6,7 @@
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QPushButton>
-#include <QVboxLayout>
+#include <QVBoxLayout>
 #include "CalculatorModel.h"
 
 class MainWindow : public QMainWindow

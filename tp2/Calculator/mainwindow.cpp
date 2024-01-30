@@ -1,17 +1,18 @@
 #include "mainwindow.h"
-#include "QMainWindow"
-#include "QMenuBar"
-#include "QMessageBox"
-#include "QMenu"
+#include <QIcon>
+#include "CalculatorModel.h"
 #include "QAction"
+#include "QButtonGroup"
+#include "QComboBox"
 #include "QGridLayout"
-#include "QWidget"
 #include "QLabel"
 #include "QLineEdit"
+#include "QMainWindow"
+#include "QMenu"
+#include "QMenuBar"
+#include "QMessageBox"
 #include "QPushButton"
-#include "QComboBox"
-#include "QButtonGroup"
-#include "CalculatorModel.h"
+#include "QWidget"
 
 void MainWindow::setupMenuBar()
 {
@@ -136,6 +137,7 @@ MainWindow::MainWindow(QWidget *parent)
     setupButtons();
     connect(_actionSuffix, SIGNAL(toggled(bool)), this, SLOT(updateSuffix(bool)));
     updateBase(0);
+    setWindowIcon(QIcon(":/assets/app_icon.png"));
 }
 
 void MainWindow::emitIdClicked(int id) {

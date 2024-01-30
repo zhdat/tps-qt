@@ -1,11 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QLineEdit>
-#include <QLabel>
-#include <QPushButton>
 #include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMainWindow>
+#include <QPushButton>
+#include <QVboxLayout>
 #include "CalculatorModel.h"
 
 class MainWindow : public QMainWindow
@@ -34,5 +35,11 @@ private:
     QComboBox *_comboBox;
     QVector<QPushButton*> _buttons;
     QAction *_actionSuffix;
+    QWidget *_centralWidget;
+    QVBoxLayout *_layout;
+
+    void setupMenuBar();
+    void setupCentralWidget();
+    void setupButtons();
 };
 #endif // MAINWINDOW_H

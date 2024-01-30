@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "tp2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "tp2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tp2-Debug-25f5a75ec3eb72f29d69.json",
+					"name" : "tp2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tp2_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tp2_autogen-Debug-5bec75e740a35632d9e3.json",
+					"name" : "tp2_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tp2_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tp2_autogen_timestamp_deps-Debug-08ff51ef922fea8dfb18.json",
+					"name" : "tp2_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/clement/Documents/interfaceGraphique/tps_qt/tp2/cmake-build-debug",
+		"source" : "/home/clement/Documents/interfaceGraphique/tps_qt/tp2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

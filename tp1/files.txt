@@ -1,0 +1,5 @@
+README.md
+main.pro
+include/MainWidget.h
+src/MainWidget.cpp
+src/main.cpp

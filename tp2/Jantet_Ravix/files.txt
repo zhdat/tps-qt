@@ -1,0 +1,5 @@
+Readme.md
+Calculator.pro
+mainwindow.h
+mainwindow.cpp
+main.cpp

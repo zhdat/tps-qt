@@ -20,14 +20,15 @@ MainWindow::MainWindow(QWidget *parent)
     _calculatorModel = new CalculatorModel();
 
     QMenuBar *menuBar = new QMenuBar(this);
-    QMenu *menuFile = new QMenu("Fichier", menuBar);
-    QMenu *menuOptions = new QMenu("Options", menuBar);
-    QMenu *menuHelp = new QMenu("Aide", menuBar);
+    QMenu *menuFile = new QMenu("&Fichier", menuBar);
+    QMenu *menuOptions = new QMenu("&Options", menuBar);
+    QMenu *menuHelp = new QMenu("&Aide", menuBar);
     menuBar->addMenu(menuFile);
     menuBar->addMenu(menuOptions);
     menuBar->addMenu(menuHelp);
+    menuBar->setNativeMenuBar(false);
     QAction *actionExit = new QAction("&Quitter", menuFile);
-    QAction *actionAbout = new QAction("À &propos", menuHelp);
+    QAction *actionAbout = new QAction("&À &propos", menuHelp);
     menuFile->addAction(actionExit);
 
     _actionSuffix = new QAction("&Suffixe", menuOptions);

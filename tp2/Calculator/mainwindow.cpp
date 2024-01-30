@@ -20,9 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     _calculatorModel = new CalculatorModel();
 
     QMenuBar *menuBar = new QMenuBar(this);
-    QMenu *menuFile = new QMenu("Fichier", menuBar);
-    QMenu *menuOptions = new QMenu("Options", menuBar);
-    QMenu *menuHelp = new QMenu("Aide", menuBar);
+    QMenu *menuFile = new QMenu("&Fichier", menuBar);
+    QMenu *menuOptions = new QMenu("&Options", menuBar);
+    QMenu *menuHelp = new QMenu("&Aide", menuBar);
     menuBar->addMenu(menuFile);
     menuBar->addMenu(menuOptions);
     menuBar->addMenu(menuHelp);
@@ -61,132 +61,32 @@ MainWindow::MainWindow(QWidget *parent)
     connect(_comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(updateBase(int)));
 
     layout->addLayout(gridLayout);
-    QPushButton *button1 = new QPushButton("1", centralWidget);
-    QPushButton *button2 = new QPushButton("2", centralWidget);
-    QPushButton *button3 = new QPushButton("3", centralWidget);
-    QPushButton *button4 = new QPushButton("4", centralWidget);
-    QPushButton *button5 = new QPushButton("5", centralWidget);
-    QPushButton *button6 = new QPushButton("6", centralWidget);
-    QPushButton *button7 = new QPushButton("7", centralWidget);
-    QPushButton *button8 = new QPushButton("8", centralWidget);
-    QPushButton *button9 = new QPushButton("9", centralWidget);
-    QPushButton *button0 = new QPushButton("0", centralWidget);
-    QPushButton *buttonA = new QPushButton("A", centralWidget);
-    QPushButton *buttonB = new QPushButton("B", centralWidget);
-    QPushButton *buttonC = new QPushButton("C", centralWidget);
-    QPushButton *buttonD = new QPushButton("D", centralWidget);
-    QPushButton *buttonE = new QPushButton("E", centralWidget);
-    QPushButton *buttonF = new QPushButton("F", centralWidget);
-    QPushButton *buttonPlus = new QPushButton("+", centralWidget);
-    QPushButton *buttonMinus = new QPushButton("-", centralWidget);
-    QPushButton *buttonTimes = new QPushButton("*", centralWidget);
-    QPushButton *buttonDivide = new QPushButton("/", centralWidget);
-    QPushButton *buttonEquals = new QPushButton("=", centralWidget);
-    QPushButton *buttonClear = new QPushButton("CC", centralWidget);
-    QPushButton *buttonDot = new QPushButton(".", centralWidget);
-    QPushButton *buttonCount = new QPushButton("Count", centralWidget);
 
-
-    gridLayout->addWidget(buttonA, 0, 0);
-    gridLayout->addWidget(buttonB, 0, 1);
-    gridLayout->addWidget(buttonC, 0, 2);
-    gridLayout->addWidget(buttonD, 1, 0);
-    gridLayout->addWidget(buttonE, 1, 1);
-    gridLayout->addWidget(buttonF, 1, 2);
-    gridLayout->addWidget(button1, 2, 0);
-    gridLayout->addWidget(button2, 2, 1);
-    gridLayout->addWidget(button3, 2, 2);
-    gridLayout->addWidget(button4, 3, 0);
-    gridLayout->addWidget(button5, 3, 1);
-    gridLayout->addWidget(button6, 3, 2);
-    gridLayout->addWidget(button7, 4, 0);
-    gridLayout->addWidget(button8, 4, 1);
-    gridLayout->addWidget(button9, 4, 2);
-    gridLayout->addWidget(button0, 5, 1);
-    gridLayout->addWidget(buttonPlus, 2, 3);
-    gridLayout->addWidget(buttonMinus, 3, 3);
-    gridLayout->addWidget(buttonTimes, 4, 3);
-    gridLayout->addWidget(buttonDivide, 5, 3);
-    gridLayout->addWidget(buttonEquals, 5, 2);
-    gridLayout->addWidget(buttonClear, 0, 3);
-    gridLayout->addWidget(buttonDot, 5, 0);
-    gridLayout->addWidget(buttonCount, 1, 3);
-
-
-    _buttons.push_back(button0);
-    _buttons.push_back(button1);
-    _buttons.push_back(button2);
-    _buttons.push_back(button3);
-    _buttons.push_back(button4);
-    _buttons.push_back(button5);
-    _buttons.push_back(button6);
-    _buttons.push_back(button7);
-    _buttons.push_back(button8);
-    _buttons.push_back(button9);
-    _buttons.push_back(buttonA);
-    _buttons.push_back(buttonB);
-    _buttons.push_back(buttonC);
-    _buttons.push_back(buttonD);
-    _buttons.push_back(buttonE);
-    _buttons.push_back(buttonF);
-
-
-
-
-
-
-
-    // grouper tous les boutons pour faire des actions s'ils sont cliqués
+    QList<QKeySequence> buttonShortcuts = {Qt::Key_A, Qt::Key_B, Qt::Key_C, Qt::Key_Backspace, Qt::Key_D, Qt::Key_E, Qt::Key_F, Qt::Key_H, Qt::Key_1, Qt::Key_2, Qt::Key_3, Qt::Key_Plus, Qt::Key_4, Qt::Key_5, Qt::Key_6, Qt::Key_Minus, Qt::Key_7, Qt::Key_8, Qt::Key_9, Qt::Key_Asterisk, Qt::Key_Return, Qt::Key_0, Qt::Key_Period, Qt::Key_Slash};
+    QStringList displayButtonLabels = {"A", "B", "C", "CC", "D", "E", "F", "Count", "1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "*", "=", "0", ".", "/"};
+    QStringList processingButtonLabels = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
     QButtonGroup *buttonGroup = new QButtonGroup(centralWidget);
-    buttonGroup->addButton(button1, CalculatorModel::Button_1);
-    buttonGroup->addButton(button2, CalculatorModel::Button_2);
-    buttonGroup->addButton(button3, CalculatorModel::Button_3);
-    buttonGroup->addButton(button4, CalculatorModel::Button_4);
-    buttonGroup->addButton(button5, CalculatorModel::Button_5);
-    buttonGroup->addButton(button6, CalculatorModel::Button_6);
-    buttonGroup->addButton(button7, CalculatorModel::Button_7);
-    buttonGroup->addButton(button8, CalculatorModel::Button_8);
-    buttonGroup->addButton(button9, CalculatorModel::Button_9);
-    buttonGroup->addButton(button0, CalculatorModel::Button_0);
-    buttonGroup->addButton(buttonA, CalculatorModel::Button_A);
-    buttonGroup->addButton(buttonB, CalculatorModel::Button_B);
-    buttonGroup->addButton(buttonC, CalculatorModel::Button_C);
-    buttonGroup->addButton(buttonD, CalculatorModel::Button_D);
-    buttonGroup->addButton(buttonE, CalculatorModel::Button_E);
-    buttonGroup->addButton(buttonF, CalculatorModel::Button_F);
-    buttonGroup->addButton(buttonPlus, CalculatorModel::Button_Plus);
-    buttonGroup->addButton(buttonMinus, CalculatorModel::Button_Minus);
-    buttonGroup->addButton(buttonTimes, CalculatorModel::Button_Multiply);
-    buttonGroup->addButton(buttonDivide, CalculatorModel::Button_Divide);
-    buttonGroup->addButton(buttonEquals, CalculatorModel::Button_Equal);
-    buttonGroup->addButton(buttonClear, CalculatorModel::Button_Clear);
-    buttonGroup->addButton(buttonDot, CalculatorModel::Button_Dot);
-    buttonGroup->addButton(buttonCount, CalculatorModel::Button_Count);
+    QVector<QPushButton*> displayButtons;
+    QList<CalculatorModel::ButtonID> buttonIDs = {CalculatorModel::Button_A, CalculatorModel::Button_B, CalculatorModel::Button_C, CalculatorModel::Button_Clear, CalculatorModel::Button_D, CalculatorModel::Button_E, CalculatorModel::Button_F, CalculatorModel::Button_Count, CalculatorModel::Button_1, CalculatorModel::Button_2, CalculatorModel::Button_3, CalculatorModel::Button_Plus, CalculatorModel::Button_4, CalculatorModel::Button_5, CalculatorModel::Button_6, CalculatorModel::Button_Minus, CalculatorModel::Button_7, CalculatorModel::Button_8, CalculatorModel::Button_9, CalculatorModel::Button_Multiply, CalculatorModel::Button_Equal, CalculatorModel::Button_0, CalculatorModel::Button_Dot, CalculatorModel::Button_Divide};
 
-    // faire des shortcut pour les boutons avec le clavier
-    button1->setShortcut(QKeySequence(Qt::Key_1));
-    button2->setShortcut(QKeySequence(Qt::Key_2));
-    button3->setShortcut(QKeySequence(Qt::Key_3));
-    button4->setShortcut(QKeySequence(Qt::Key_4));
-    button5->setShortcut(QKeySequence(Qt::Key_5));
-    button6->setShortcut(QKeySequence(Qt::Key_6));
-    button7->setShortcut(QKeySequence(Qt::Key_7));
-    button8->setShortcut(QKeySequence(Qt::Key_8));
-    button9->setShortcut(QKeySequence(Qt::Key_9));
-    button0->setShortcut(QKeySequence(Qt::Key_0));
-    buttonA->setShortcut(QKeySequence(Qt::Key_A));
-    buttonB->setShortcut(QKeySequence(Qt::Key_B));
-    buttonC->setShortcut(QKeySequence(Qt::Key_C));
-    buttonD->setShortcut(QKeySequence(Qt::Key_D));
-    buttonE->setShortcut(QKeySequence(Qt::Key_E));
-    buttonF->setShortcut(QKeySequence(Qt::Key_F));
-    buttonPlus->setShortcut(QKeySequence(Qt::Key_Plus));
-    buttonMinus->setShortcut(QKeySequence(Qt::Key_Minus));
-    buttonTimes->setShortcut(QKeySequence(Qt::Key_Asterisk));
-    buttonDivide->setShortcut(QKeySequence(Qt::Key_Slash));
-    buttonEquals->setShortcut(QKeySequence(Qt::Key_Return));
-    buttonClear->setShortcut(QKeySequence(Qt::Key_Backspace));
-    buttonDot->setShortcut(QKeySequence(Qt::Key_Period));
+
+    for (int i = 0; i < displayButtonLabels.size(); ++i) {
+        QPushButton *button = new QPushButton(displayButtonLabels[i], centralWidget);
+        displayButtons.push_back(button);
+        gridLayout->addWidget(button, i / 4, i % 4); // Adjust the grid layout as per your requirement
+        buttonGroup->addButton(button, buttonIDs[i]);
+        button->setShortcut(buttonShortcuts[i]);
+    }
+
+    for (int i = 0; i < processingButtonLabels.size(); ++i) {
+        auto it = std::find_if(displayButtons.begin(), displayButtons.end(), [&](QPushButton *button) {
+            return button->text() == processingButtonLabels[i];
+        });
+
+        if (it != displayButtons.end()) {
+            _buttons.push_back(*it);
+        }
+    }
 
     actionExit->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
     _actionSuffix->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));

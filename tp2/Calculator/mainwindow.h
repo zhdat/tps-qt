@@ -30,7 +30,6 @@ signals:
 
 private:
     QLineEdit *_lineEdit;
-    QLabel *_label;
     CalculatorModel *_calculatorModel;
     QComboBox *_comboBox;
     QVector<QPushButton*> _buttons;

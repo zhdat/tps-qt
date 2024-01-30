@@ -48,14 +48,12 @@ void MainWindow::setupCentralWidget()
     setCentralWidget(_centralWidget);
 
     QLabel *labelCalc = new QLabel("Calculatrice", _centralWidget);
-    _label = new QLabel("0", _centralWidget);
 
     _lineEdit = new QLineEdit(_centralWidget);
     _lineEdit->setReadOnly(true);
 
     _layout = new QVBoxLayout(_centralWidget);
     _layout->addWidget(labelCalc);
-    _layout->addWidget(_label);
     _layout->addWidget(_lineEdit);
 
     _actionSuffix->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
@@ -108,9 +106,7 @@ void MainWindow::setupButtons()
     for (int i = 0; i < displayButtonLabels.size(); ++i) {
         QPushButton *button = new QPushButton(displayButtonLabels[i], _centralWidget);
         displayButtons.push_back(button);
-        gridLayout->addWidget(button,
-                              i / 4,
-                              i % 4); // Adjust the grid layout as per your requirement
+        gridLayout->addWidget(button, i / 4, i % 4);
         buttonGroup->addButton(button, buttonIDs[i]);
         button->setShortcut(buttonShortcuts[i]);
     }
@@ -162,50 +158,7 @@ void MainWindow::executeCommand(int id) {
                 break;
         }
     }
-    _label->setText(text);
-    switch (id) {
-        case CalculatorModel::Button_0:
-        case CalculatorModel::Button_1:
-        case CalculatorModel::Button_2:
-        case CalculatorModel::Button_3:
-        case CalculatorModel::Button_4:
-        case CalculatorModel::Button_5:
-        case CalculatorModel::Button_6:
-        case CalculatorModel::Button_7:
-        case CalculatorModel::Button_8:
-        case CalculatorModel::Button_9:
-            _lineEdit->setText(_lineEdit->text() + QString::number(id));
-            break;
-        case CalculatorModel::Button_A:
-        case CalculatorModel::Button_B:
-        case CalculatorModel::Button_C:
-        case CalculatorModel::Button_D:
-        case CalculatorModel::Button_E:
-        case CalculatorModel::Button_F:
-            _lineEdit->setText(_lineEdit->text() + QString(QChar('A' + (id - CalculatorModel::Button_A))));
-            break;
-        case CalculatorModel::Button_Plus:
-            _lineEdit->setText(_lineEdit->text() + " + ");
-            break;
-        case CalculatorModel::Button_Minus:
-            _lineEdit->setText(_lineEdit->text() + " - ");
-            break;
-        case CalculatorModel::Button_Multiply:
-            _lineEdit->setText(_lineEdit->text() + " * ");
-            break;
-        case CalculatorModel::Button_Divide:
-            _lineEdit->setText(_lineEdit->text() + " / ");
-            break;
-        case CalculatorModel::Button_Equal:
-            _lineEdit->setText(_lineEdit->text() + " = " + _label->text());
-            break;
-        case CalculatorModel::Button_Dot:
-            _lineEdit->setText(_lineEdit->text() + ".");
-            break;
-        case CalculatorModel::Button_Clear:
-            _lineEdit->setText("");
-            break;
-    }
+    _lineEdit->setText(text);
 }
 
 
@@ -236,7 +189,7 @@ void MainWindow::updateBase(int index) {
 }
 
 void MainWindow::updateSuffix(bool checked) {
-    QString text = _label->text();
+    QString text = _lineEdit->text();
     if (checked) {
         switch (_calculatorModel->base()) {
             case CalculatorModel::Bin:
@@ -251,7 +204,7 @@ void MainWindow::updateSuffix(bool checked) {
     } else {
         text = text.remove(QRegularExpression("[bh]$"));
     }
-    _label->setText(text);
+    _lineEdit->setText(text);
 }
 
 

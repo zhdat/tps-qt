@@ -54,10 +54,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Calculator/main.cpp \
 		../Calculator/mainwindow.cpp \
-		../Calculator/CalculatorModel.cpp moc_mainwindow.cpp
+		../Calculator/CalculatorModel.cpp qrc_resources.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		CalculatorModel.o \
+		qrc_resources.o \
 		moc_mainwindow.o
 DIST          = /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/spec_pre.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/qdevice.pri \
@@ -243,6 +245,7 @@ DIST          = /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/spec_pre.prf 
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/qt_config.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/macx-clang/qmake.conf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/spec_post.prf \
+		../Calculator/.qmake.stash \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/exclusive_builds.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/mac/sdk.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/toolchain.prf \
@@ -283,7 +286,7 @@ TARGET        = Calculator.app/Contents/MacOS/Calculator
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 14.2
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/callisteravix/Documents/ensi/2annee/semestre2/qt/tps_qt/tp2/build-Calculator-Desktop_arm_darwin_generic_mach_o_64bit-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = arm64
 EXPORT_DEFAULT_ARCHS = arm64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -483,6 +486,7 @@ Makefile: ../Calculator/Calculator.pro /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/qt_config.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/macx-clang/qmake.conf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/exclusive_builds.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/mac/sdk.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/toolchain.prf \
@@ -512,6 +516,7 @@ Makefile: ../Calculator/Calculator.pro /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/yacc.prf \
 		/opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/lex.prf \
 		../Calculator/Calculator.pro \
+		../Calculator/resources.qrc \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtGui.framework/Resources/QtGui.prl \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Resources/QtCore.prl
@@ -700,6 +705,7 @@ Makefile: ../Calculator/Calculator.pro /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/qt_config.prf:
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/macx-clang/qmake.conf:
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/exclusive_builds.prf:
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/mac/sdk.prf:
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/toolchain.prf:
@@ -729,6 +735,7 @@ Makefile: ../Calculator/Calculator.pro /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/yacc.prf:
 /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/lex.prf:
 ../Calculator/Calculator.pro:
+../Calculator/resources.qrc:
 /opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 /opt/homebrew/Cellar/qt@5/5.15.12/lib/QtGui.framework/Resources/QtGui.prl:
 /opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Resources/QtCore.prl:
@@ -761,6 +768,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calculator/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/homebrew/Cellar/qt@5/5.15.12/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calculator/mainwindow.h ../Calculator/CalculatorModel.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calculator/main.cpp ../Calculator/mainwindow.cpp ../Calculator/CalculatorModel.cpp $(DISTDIR)/
@@ -773,6 +781,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Calculator.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -789,8 +798,15 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resources.cpp
+qrc_resources.cpp: ../Calculator/resources.qrc \
+		/opt/homebrew/Cellar/qt@5/5.15.12/bin/rcc \
+		../Calculator/assets/app_icon.png \
+		../Calculator/assets/app_icon.png
+	/opt/homebrew/Cellar/qt@5/5.15.12/bin/rcc -name resources ../Calculator/resources.qrc -o qrc_resources.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -801,16 +817,18 @@ compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../Calculator/mainwindow.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMainWindow \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLineEdit \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlineedit.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLabel \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlabel.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QPushButton \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QComboBox \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLabel \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlabel.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLineEdit \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMainWindow \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QPushButton \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		../Calculator/CalculatorModel.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/QString \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/qstring.h \
@@ -832,21 +850,23 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
 main.o: ../Calculator/main.cpp ../Calculator/mainwindow.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMainWindow \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLineEdit \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlineedit.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLabel \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlabel.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QPushButton \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QComboBox \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLabel \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlabel.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLineEdit \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMainWindow \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QPushButton \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		../Calculator/CalculatorModel.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/QString \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/qstring.h \
@@ -855,35 +875,37 @@ main.o: ../Calculator/main.cpp ../Calculator/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Calculator/main.cpp
 
 mainwindow.o: ../Calculator/mainwindow.cpp ../Calculator/mainwindow.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMainWindow \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLineEdit \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlineedit.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLabel \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlabel.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QPushButton \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QComboBox \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLabel \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlabel.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QLineEdit \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMainWindow \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QPushButton \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		../Calculator/CalculatorModel.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/QString \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/qstring.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtGui.framework/Headers/QIcon \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtGui.framework/Headers/qicon.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QAction \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qaction.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QButtonGroup \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qbuttongroup.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QGridLayout \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMenu \
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmenu.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMenuBar \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmenubar.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMessageBox \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QMenu \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qmenu.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QAction \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qaction.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QGridLayout \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QWidget \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qwidget.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/QButtonGroup \
-		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qbuttongroup.h
+		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtWidgets.framework/Headers/qwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Calculator/mainwindow.cpp
 
 CalculatorModel.o: ../Calculator/CalculatorModel.cpp ../Calculator/CalculatorModel.h \
@@ -892,6 +914,9 @@ CalculatorModel.o: ../Calculator/CalculatorModel.cpp ../Calculator/CalculatorMod
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/QRegularExpression \
 		/opt/homebrew/Cellar/qt@5/5.15.12/lib/QtCore.framework/Headers/qregularexpression.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CalculatorModel.o ../Calculator/CalculatorModel.cpp
+
+qrc_resources.o: qrc_resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

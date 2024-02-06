@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/euro.png</file>
+        <file>icons/document-save.png</file>
+        <file>icons/document-print.png</file>
+        <file>icons/document-open.png</file>
+        <file>icons/document-new.png</file>
+    </qresource>
+</RCC>

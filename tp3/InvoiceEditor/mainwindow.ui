@@ -331,7 +331,7 @@
          </widget>
         </item>
         <item>
-         <widget class="InvoiceModel" name="widget" native="true">
+         <widget class="PersonnalWidget" name="widget" native="true">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -415,9 +415,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>InvoiceModel</class>
+   <class>PersonnalWidget</class>
    <extends>QWidget</extends>
-   <header>InvoiceModel.h</header>
+   <header>PersonnalWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

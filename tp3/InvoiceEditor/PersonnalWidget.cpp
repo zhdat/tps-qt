@@ -7,9 +7,10 @@ PersonnalWidget::PersonnalWidget(QWidget *parent)
 }
 
 
-void PersonnalWidget::setModeleDocument(InvoiceModel *modele)
+void PersonnalWidget::setModel(InvoiceModel *modele)
 {
     invoiceModel = modele;
+    connect(invoiceModel, &InvoiceModel::notify, this, &PersonnalWidget::updateView);
     update(); // Rafraîchir le widget dès que le modèle est associé
 }
 
@@ -81,5 +82,15 @@ void PersonnalWidget::paintEvent(QPaintEvent *event)
         painter.drawRect(QRect(width() - textWidth - 90, tableHeight + 30, 90, textHeight));
         painter.drawRect(QRect(width() - textWidth - 90, tableHeight + 60, 90, textHeight));
      }
+    if(invoiceModel){
+        QFontMetrics fm(painter.font());
+        painter.drawText(QRect(15, 15, 200, 100), Qt::AlignLeft, invoiceModel->lastname());
+        int lastnameWidth = fm.width(invoiceModel->lastname());
+        painter.drawText(QRect(15 + lastnameWidth + 5, 15, 200, 100), Qt::AlignLeft, invoiceModel->firstname());
+    }
+}
+
+void PersonnalWidget::updateView(){
+    update();
 }
 

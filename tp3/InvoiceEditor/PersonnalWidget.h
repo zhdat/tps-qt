@@ -10,9 +10,10 @@ class PersonnalWidget : public QWidget
     Q_OBJECT
 public:
     explicit PersonnalWidget(QWidget *parent = nullptr);
-    void setModeleDocument(InvoiceModel *modele);
-signals:
+    void setModel(InvoiceModel *modele);
 
+public slots:
+    void updateView();
 protected:
     void paintEvent(QPaintEvent *event) override;
 
